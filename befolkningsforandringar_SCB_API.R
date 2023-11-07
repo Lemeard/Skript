@@ -16,7 +16,7 @@ library(stringr)
 library(writexl)
 
 ######## Inställningar ###########################################################################################################################
-geo <- c("2580") # ändra geografi som ska användas här. Helsingborg är exempelvis 1283.                                                        ###
+geo <- c("1283") # ändra geografi som ska användas här. Helsingborg är exempelvis 1283.                                                        ###
                                                                                                                                                ###
 # Kommunkoderna återfinns här:                                                                                                                 ###
 # https://www.scb.se/hitta-statistik/regional-statistik-och-kartor/regionala-indelningar/lan-och-kommuner/lan-och-kommuner-i-kodnummerordning/ ###
@@ -27,7 +27,7 @@ geo <- c("2580") # ändra geografi som ska användas här. Helsingborg är exemp
 folkökning <- c("folkökning")                                      # Folkökning                                                                ###
 födda <- c("födda")                                                # Födda                                                                     ###
 döda <- c("döda")                                                  # Döda                                                                      ###
-födelseöverskott <- c("födelseöverskott")                          # Födelseöverskott                                                          ###                                                                                            ###
+födelseöverskott <- c("födelseöverskott")                          # Födelseöverskott                                                          ###                                                                                            
 flyttningsöverskott_län <-  c("flyttningsöverskott eget län")      # Flyttnetto mot eget län                                                   ###
 flyttningsöverskott_övriga_sverige <-  c("flyttningsöverskott övriga Sverige") # Flyttnetto mot Sverige utom det egna länet                    ###
 flyttningsöverskott_sverige_totalt <-  c("flyttningsöverskott inrikes totalt") # Flyttnetto mot Sverige (totalt)                               ###
@@ -35,7 +35,7 @@ invandringsöverskott <- c("invandringsöverskott")                  # Invandrin
 utvandring   <- c("utvandringar")                                  # Utvandring                                                                ###
 invandring   <- c("invandringar")                                  # Invandring                                                                ###                                                                                                                                              ###                                                                                                                                    ###                                                                    ###
                                                                                                                                                ###
-utskriftsmapp <- c("G:/Avd Strategisk samhällsutveckling/Staben/06 Statistik/12. R/Utskrift/") # Utskriftsmapp                                 ###                                                                                                            ###
+utskriftsmapp <- c("C:/Utskrift/") # Utskriftsmapp                                                                                             ###
 bearbetning <- c("Skript av Thomas Lassi, Helsingborgs Stad")      # Till förklaring i nedre högra hörnet                                      ###
                                                                                                                                                ###
 ##################################################################################################################################################
