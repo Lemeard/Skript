@@ -68,6 +68,10 @@ excel_output <- px_data_frame |>
                       select(region, månad, förändringar, Befolkning) |> 
                       pivot_wider(id_cols = c("region", "månad"), names_from = "förändringar", values_from = "Befolkning")
 
+if (!file.exists(utskriftsmapp)) {
+  dir.create(utskriftsmapp, recursive = TRUE)
+}
+
 write_xlsx(excel_output,paste0(utskriftsmapp,geo_namn, "_",max(px_data_frame$månad),".xlsx"))
 
 # Skapar diagram ---------------------------------------------------------------------------------
