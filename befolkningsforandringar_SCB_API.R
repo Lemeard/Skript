@@ -8,6 +8,9 @@
 # Ändra även input för utskriftsmapp och bearbetning/författare efter tycke
 # Sen för att använda är det endast att markera hela skriptet, köra det och kika i utskriftsmappen
 
+# Om det är första gången du kör skriptet kan du behöva installera paketen som används nedan. (ta bort # i början på raden för att köra den)
+# install.packages(c("pxweb", "tidyverse", "RColorBrewer", "stringr", "writexl"))
+
 ### Läs in paket  ------------------------------------------------------
 library(pxweb)
 library(tidyverse)
