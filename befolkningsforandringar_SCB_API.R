@@ -93,7 +93,7 @@ for (i in 1:length(variabler)) {
     
     #Nedan skapas ett diagram per vald variabel
     kumulativ_plot <-  ggplot(filtrerad_df, aes(x = månad, y = kum_befolkning, color = as.factor(år))) + # den här raden väljer variabler för x och y, samt gruppen som ska bestämma färgerna
-                            geom_line(size=1.1)+
+                            geom_line(linewidth=1.1)+
                             scale_color_manual(values = farger) +
                             scale_x_continuous(
                               limits = c(1, 12),
@@ -105,7 +105,7 @@ for (i in 1:length(variabler)) {
                                   panel.background = element_rect(fill = "white"),
                                   legend.key = element_blank(),
                                   legend.title = element_blank(),
-                                  panel.grid.major.y = element_line(color = "lightgray", size = 0.3),
+                                  panel.grid.major.y = element_line(color = "lightgray", linewidth = 0.3),
                                   axis.ticks.length.y = unit(0, "mm"),
                                   axis.ticks.length.x = unit(2, "mm"),
                                   plot.title = element_text(hjust = 0.5),
