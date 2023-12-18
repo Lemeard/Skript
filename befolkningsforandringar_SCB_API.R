@@ -44,7 +44,7 @@ bearbetning <- c("Skript av Thomas Lassi, Helsingborgs Stad")      # Till förkl
 ##################################################################################################################################################
 
 ### Läser in färger som används längre ner i skriptet 
-farger <- brewer.pal(9, "Blues")[c(TRUE, FALSE)] #Här går det såklart också att justera och använda andra färger också
+farger <- brewer.pal(9, "Blues")[c(TRUE, FALSE)] #Justera och använd lämpliga färger enligt organisationens layout
 
 ### Drar hem statistik från SCB över befolkningsförändringar på månadsbasis
 pxweb_query_list <- 
@@ -66,13 +66,13 @@ variabler <- c(na.omit(folkökning), na.omit(födda), na.omit(döda), na.omit(f�
 # Skriver ut en excel-fil med alla variabler per år ----------------------------------------------
 excel_output <- px_data_frame |> 
                       select(region, månad, förändringar, Befolkning) |> 
-                      pivot_wider(id_cols = c("region", "månad"), names_from = "förändringar", values_from = "Befolkning")
+                      pivot_wider(id_cols = c("region", "månad"), names_from = "förändringar", values_from = "Befolkning") #skapar en dataframe som vi kan skriva ut
 
 if (!file.exists(utskriftsmapp)) {
   dir.create(utskriftsmapp, recursive = TRUE)
-}
+} # Skapar en utskriftsmapp om den inte redan existerar
 
-write_xlsx(excel_output,paste0(utskriftsmapp,geo_namn, "_",max(px_data_frame$månad),".xlsx"))
+write_xlsx(excel_output,paste0(utskriftsmapp,geo_namn, "_",max(px_data_frame$månad),".xlsx")) # Skriver ut själva excel-filen
 
 # Skapar diagram ---------------------------------------------------------------------------------
 for (i in 1:length(variabler)) {
