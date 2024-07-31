@@ -18,10 +18,8 @@ library(RColorBrewer)
 library(stringr)
 library(writexl)
 
-source("G:/Avd Strategisk samhällsutveckling/Staben/06 Statistik/5. Thomas/R/skript/diagram_farger.R")
-
 ######## Inställningar ###########################################################################################################################
-geo <- c("1283") # ändra geografi som ska användas här. Helsingborg är exempelvis 1283.                                                        ###
+geo <- c("2580") # ändra geografi som ska användas här. Helsingborg är exempelvis 1283.                                                        ###
                                                                                                                                                ###
 # Kommunkoderna återfinns här:                                                                                                                 ###
 # https://www.scb.se/hitta-statistik/regional-statistik-och-kartor/regionala-indelningar/lan-och-kommuner/lan-och-kommuner-i-kodnummerordning/ ###
@@ -40,7 +38,7 @@ invandringsöverskott <- c("invandringsöverskott")                  # Invandrin
 utvandring   <- c("utvandringar")                                  # Utvandring                                                                ###
 invandring   <- c("invandringar")                                  # Invandring                                                                ###                                                                                                                                              ###                                                                                                                                    ###                                                                    ###
                                                                                                                                                ###
-utskriftsmapp <- c("G:/Avd Strategisk samhällsutveckling/Staben/06 Statistik/5. Thomas/Utskrift/") # Utskriftsmapp                             ###                                                                ###
+utskriftsmapp <- c("C:/Utskrift/") # Utskriftsmapp                                                                                             ###
 bearbetning <- c("Skript av Thomas Lassi")      # Till förklaring i nedre högra hörnet                                                         ###
                                                                                                                                                ###
 ##################################################################################################################################################
@@ -94,7 +92,7 @@ for (i in 1:length(variabler)) {
     rubrik <- paste(toupper(substr(variabler[i], 1, 1)), tolower(substr(variabler[i], 2, nchar(variabler[i]))), sep = "") # Inte en ideal lösning, men skapar rubriker som börjar med stor bokstav                 
     
     #Nedan skapas ett diagram per vald variabel
-    kumulativ_plot <-  ggplot(filtrerad_df, aes(x = månad, y = kum_befolkning, color = as.factor(år))) + # den här raden väljer variabler för x och y, samt gruppen som ska bestämma färgerna
+    kumulativ_plot <-  ggplot(filtrerad_df, aes(x = månad, y = kum_befolkning, color = as.factor(år), alpha=år)) + # den här raden väljer variabler för x och y, samt gruppen som ska bestämma färgerna
                             geom_line(linewidth=1.1)+
                             geom_point()+
                             scale_color_manual(values = farger) +
@@ -140,10 +138,13 @@ flyttnetto_df <- excel_output |>
 ## Skriver ut ett exceldokument med förändringarna i utskriftsmappen som har angivits tidigare
 write_xlsx(flyttnetto_df,paste0(utskriftsmapp, "Flyttnetto", geo_namn, "_",max(px_data_frame$månad),".xlsx")) # Skriver ut själva excel-filen
 
+scale_alpha_continuous(ifelse(flyttnetto_df$år==format(Sys.Date(), "%Y"), 0, 1))+
+
 ## Skapar själva stapeldiagrammet
-flyttnetto <- ggplot(flyttnetto_df, aes(fill = Typ, y=Antal, x=år)) + 
+flyttnetto <- ggplot(flyttnetto_df, aes(fill = Typ, y=Antal, x=år, alpha = ifelse(år == max(år), 0.4, 1))) + 
                           geom_bar(position="stack", stat="identity", color="black") +
                           scale_fill_manual(values = c("#F0B323", "#E35205", "#C0843D", "#C5B9AC"))+
+                          scale_alpha_identity()+
                           scale_x_continuous(
                             limits = c(min(flyttnetto_df$år)-1, max(flyttnetto_df$år)+1),
                             expand = c(0, 0),
