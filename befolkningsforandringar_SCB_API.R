@@ -138,8 +138,6 @@ flyttnetto_df <- excel_output |>
 ## Skriver ut ett exceldokument med förändringarna i utskriftsmappen som har angivits tidigare
 write_xlsx(flyttnetto_df,paste0(utskriftsmapp, "Flyttnetto", geo_namn, "_",max(px_data_frame$månad),".xlsx")) # Skriver ut själva excel-filen
 
-scale_alpha_continuous(ifelse(flyttnetto_df$år==format(Sys.Date(), "%Y"), 0, 1))+
-
 ## Skapar själva stapeldiagrammet
 flyttnetto <- ggplot(flyttnetto_df, aes(fill = Typ, y=Antal, x=år, alpha = ifelse(år == max(år), 0.4, 1))) + 
                           geom_bar(position="stack", stat="identity", color="black") +
