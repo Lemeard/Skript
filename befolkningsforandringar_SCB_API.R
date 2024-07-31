@@ -92,7 +92,7 @@ for (i in 1:length(variabler)) {
     rubrik <- paste(toupper(substr(variabler[i], 1, 1)), tolower(substr(variabler[i], 2, nchar(variabler[i]))), sep = "") # Inte en ideal lösning, men skapar rubriker som börjar med stor bokstav                 
     
     #Nedan skapas ett diagram per vald variabel
-    kumulativ_plot <-  ggplot(filtrerad_df, aes(x = månad, y = kum_befolkning, color = as.factor(år), alpha=år)) + # den här raden väljer variabler för x och y, samt gruppen som ska bestämma färgerna
+    kumulativ_plot <-  ggplot(filtrerad_df, aes(x = månad, y = kum_befolkning, color = as.factor(år))) + # den här raden väljer variabler för x och y, samt gruppen som ska bestämma färgerna
                             geom_line(linewidth=1.1)+
                             geom_point()+
                             scale_color_manual(values = farger) +
